@@ -2,7 +2,8 @@
   "name": "workspace-linker",
   "displayName": "Workspace Linker",
   "description": "Scan workspace folders for marker directories and create/remove managed links.",
-  "version": "0.0.1",
+  "icon": "media/icon.png",
+  "version": "0.0.2",
 	"publisher": "JunJieZhang",
   "license": "MIT",
   "engines": {
