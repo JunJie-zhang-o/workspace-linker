@@ -6,6 +6,10 @@
   "version": "0.0.2",
 	"publisher": "JunJieZhang",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JunJie-zhang-o/workspace-linker"
+  },
   "engines": {
     "vscode": "^1.95.0"
   },
