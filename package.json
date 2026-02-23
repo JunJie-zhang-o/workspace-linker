@@ -1,0 +1,96 @@
+{
+  "name": "workspace-linker",
+  "displayName": "Workspace Linker",
+  "description": "Scan workspace folders for marker directories and create/remove managed links.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:workspaceLinker.scanAndLink",
+    "onCommand:workspaceLinker.unlinkManaged"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "workspaceLinker.scanAndLink",
+        "title": "Workspace Linker: Scan and Create Link"
+      },
+      {
+        "command": "workspaceLinker.unlinkManaged",
+        "title": "Workspace Linker: Remove Managed Links"
+      }
+    ],
+    "configuration": {
+      "title": "Workspace Linker",
+      "properties": {
+        "workspaceLinker.markerFolderNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            ".vscode"
+          ],
+          "description": "Folder names that mark a directory as link candidate."
+        },
+        "workspaceLinker.excludeDirNames": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            ".git",
+            "node_modules",
+            "venv",
+            ".venv",
+            "dist",
+            "build",
+            "out",
+            "target",
+            ".idea",
+            ".tox"
+          ],
+          "description": "Directory names excluded from recursive scan."
+        },
+        "workspaceLinker.followSymlinks": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether scanner follows symbolic-link directories."
+        },
+        "workspaceLinker.destinationRootMode": {
+          "type": "string",
+          "enum": [
+            "pickWhenMultiRoot",
+            "firstWorkspaceFolder"
+          ],
+          "default": "pickWhenMultiRoot",
+          "description": "How to select destination workspace root when multiple roots are opened."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "lint": "tsc --noEmit",
+    "compile-tests": "tsc -p . --outDir out",
+    "test": "npm run lint && npm run build && npm run compile-tests && mocha \"out/src/test/suite/**/*.test.js\" --timeout 10000"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.4",
+    "@types/vscode": "^1.95.0",
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.0",
+    "mocha": "^11.1.0",
+    "typescript": "^5.8.2",
+    "vscode": "^0.9.9"
+  }
+}

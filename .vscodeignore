@@ -1,0 +1,6 @@
+out/**
+src/**
+.gitignore
+mocha.opts
+**/*.map
+**/*.ts
