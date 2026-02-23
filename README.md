@@ -90,15 +90,13 @@
 - `npm test`：执行 lint + build + compile-tests + mocha
 
 GitHub CI 中还会执行：
-- `.github/ci/package-extension.sh`：打包 VSIX
+- `npx --yes @vscode/vsce package --no-yarn --allow-missing-repository --out artifacts/<name>.vsix`：打包 VSIX
 
 ## 文件结构
 
 ```text
 .
 ├── .github
-│   ├── ci
-│   │   └── package-extension.sh
 │   └── workflows
 │       └── ci.yml
 ├── dist/                     # esbuild 输出

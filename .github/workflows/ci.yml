@@ -36,8 +36,9 @@ jobs:
       - name: Package VSIX
         id: package
         run: |
-          chmod +x .github/ci/package-extension.sh
-          VSIX_PATH=$(.github/ci/package-extension.sh artifacts "workspace-linker-${GITHUB_SHA}.vsix")
+          VSIX_PATH="artifacts/workspace-linker-${GITHUB_SHA}.vsix"
+          mkdir -p artifacts
+          npx --yes @vscode/vsce package --no-yarn --allow-missing-repository --out "${VSIX_PATH}"
           echo "vsix_path=${VSIX_PATH}" >> "${GITHUB_OUTPUT}"
 
       - name: Upload artifact

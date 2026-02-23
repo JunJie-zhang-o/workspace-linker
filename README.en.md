@@ -90,15 +90,13 @@ Development/CI commands:
 - `npm run lint`
 - `npm run compile-tests`
 - `npm test`
-- `.github/ci/package-extension.sh` (VSIX packaging in CI)
+- `npx --yes @vscode/vsce package --no-yarn --allow-missing-repository --out artifacts/<name>.vsix`
 
 ## Project Structure
 
 ```text
 .
 ├── .github
-│   ├── ci
-│   │   └── package-extension.sh
 │   └── workflows
 │       └── ci.yml
 ├── dist/
